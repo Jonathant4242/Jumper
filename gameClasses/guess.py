@@ -91,3 +91,24 @@ class Guess:
             self.game_status = "Correct!, You won"
         else:
             self.game_status = "Still playing"
+
+#code for testing:
+
+# guess = Guess()
+# guess.set_word()
+# print(f'\nrandom word: {guess.word}')
+
+# guess.make_blanks()
+# print(*guess.blanks, sep='')
+
+# guess.update_blanks('e')
+# print(f'your guess is: {guess.guessed_letter}')
+# print(f'your guess index is: {guess.guess_index}')
+# print(f'number of wrong guesses: {guess.num_wrong_guesses}')
+
+# separator = ''
+# cleaned_blanks = separator.join(guess.blanks)
+# print(f'updated blanks: {cleaned_blanks}')
+
+# guess.get_game_status()
+# print(f'game status: {guess.game_status}\n')
