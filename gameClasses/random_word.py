@@ -9,7 +9,7 @@ class Random_word:
 		self.word = ''
 	
 	def generate_word(self):
-		"""This method generates a random word for the game. It uses the file word_list.txt as its word bank
+		"""This method generates a random word for the game. It uses the file prophets.txt as its word bank
 		
 		Returns:
 			word: a random word for use in the Jumper game"""
