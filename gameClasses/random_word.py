@@ -9,12 +9,12 @@ class Random_word:
 		self.word = ''
 	
 	def generate_word(self):
-		"""This method generates a random word for the game. It uses the file word_list.txt as its word bank
+		"""This method generates a random word for the game. It uses the file prophets.txt as its word bank
 		
 		Returns:
 			word: a random word for use in the Jumper game"""
 		
-		with open("gameClasses\word_list.txt", "r") as file:
+		with open("gameClasses\prophets.txt", "r") as file:
 			allText = file.read()
 			words = list(map(str, allText.split()))
 			self.word = random.choice(words)
