@@ -1,4 +1,5 @@
-
+class director:
+    
 """
 attrubites:
     picture

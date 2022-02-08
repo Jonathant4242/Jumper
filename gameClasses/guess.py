@@ -11,10 +11,14 @@ class Guess:
         guessed_letter: the letter the player guessed 
         
         num_wrong_guesses: how many times the player has guessed wrong
+
+        max_num_wrong_guesses: 4
         
         guess_index: a list composed of the indices at which the guessed letter is located in the random  word. If this is an empty list the player has guessed wrong.
         
         game_status: says if game still in play, or ended in a win or loss.
+
+        guess = chosen input from user.
 
     """
     def __init__(self):
@@ -22,12 +26,14 @@ class Guess:
         
         Arguments: 
             self (Guess): an instance of Guess"""
-        self.word = ''
-        self.blanks = []
-        self.guessed_letter = ''
+        self.word = ""
+        self.puzzle = ""
+        self.guessed_letters = []
+        self.guess = ""
         self.num_wrong_guesses = 0
-        self.guess_index = []
-        self.game_status = ''
+        self.MAX_NUM_WRONG_GUESSES = 4
+        self.game_status = ""
+        
 
     def set_word(self):
         """This method gets a random word from the Random_word class.
@@ -37,48 +43,49 @@ class Guess:
 
         random_word = Random_word()
         self.word = random_word.generate_word()
-
-    def make_blanks(self):
-        """Generates a list composed of blank spaces ("_ "). It makes one space for each of the letters in the random word.
-        
-        Args:
-            Self (Guess): An instance of Guess"""
-
+        self.puzzle = ""
         for i in range(len(self.word)):
-            self.blanks.append('_ ')
-            
-            #this is the code to remove all the brackets and commas when printing self.blanks: 
-            #print (*self.blanks, sep='')
+            self.puzzle += "_ "
+
+    def _update_puzzle(self):
+        found = False
+        pos = -1
+        while True:
+            pos = self.word.find(self.guess, pos+1)
+            if pos == -1:
+                break
+            self.puzzle[pos] = self.guess
+            found = True
+        if not found:
+            self.num_wrong_guesses += 1
+
+    # _compare: compare guess to chosen word
+
+    def make_guess(self):
+        while True:
+            choice = input('Guess a letter [A-Z] : ').lower()
+            if len(choice) == 1:
+                if choice.isalpha():
+                    if choice in self.guessed_letters:
+                        print("You already guessed this letter. Please try again.")
+                    else:
+                        self.guessed_letters.append(choice)
+                        self.guess = choice
+                        break
+                else:
+                    print("Please enter a letter.")
+            else:
+                print('Please enter one letter.')
+        self._update_puzzle()
 
 
-    def update_blanks(self, player_guess):
-        """This method finds the index of the guessed letter in the random word. It stores the indices in the list "guess_index". It replaces a blank with the guessed letter at the appropriate index. Adds 1 to num_wrong_guesses if the guess_index is empty.
-        
-        Args:
-            Self (Guess): An instance of Guess
-            player_guess: the letter the player guessed."""
-            
-        self.guessed_letter = player_guess
+    def display_puzzle(self):
+        pass
 
-        #go through the word to see if the guessed letter is in it. 
-        # If the letter is there it will put it's index in the list 'guess_index'
-        # If the letter isn't there, guess_index will be empty and num_wrong guesses will increase by one.        
-        for pos,char in enumerate(self.word):
-            if(char == self.guessed_letter):
-                self.guess_index.append(pos)
-        if self.guess_index == []:
-            self.num_wrong_guesses += 1   
-        #print(self.guess_index)
-        #print(self.numb_wrong_guesses)
 
-        #This replaces the blank with the letter guessed
-        for i in self.guess_index:
-            self.blanks[i] = self.guessed_letter
-            
-            #print(i)
+    def get_num_wrong(self):
+        pass
 
-        #print(*self.blanks, sep='')
-    
     def get_game_status(self):
         """This method determines if the game is still being played, has been won, or has been lost.
         
@@ -91,6 +98,7 @@ class Guess:
             self.game_status = "Correct!, You won"
         else:
             self.game_status = "Still playing"
+        return self.game_status
 
 #code for testing:
 
@@ -112,3 +120,11 @@ class Guess:
 
 # guess.get_game_status()
 # print(f'game status: {guess.game_status}\n')
+
+"""Methods:
+   
+    
+    
+    
+    display_puzzle:
+    display_guesses: above and beyond"""
