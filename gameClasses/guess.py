@@ -1,4 +1,10 @@
 from random_word import Random_word
+from enum import Enum, auto
+
+class GameStatus(Enum):
+    WIN = auto()
+    LOSE = auto()
+    PLAY = auto()
 
 class Guess:
     """The responsibility of this class is to generate a series of blank spaces matching the number of letters in the word to be guessed. It will fill in the blanks with the correct letter as the player guesses them. It will keep track of wrong guesses.
@@ -13,8 +19,6 @@ class Guess:
         num_wrong_guesses: how many times the player has guessed wrong
 
         max_num_wrong_guesses: 4
-        
-        guess_index: a list composed of the indices at which the guessed letter is located in the random  word. If this is an empty list the player has guessed wrong.
         
         game_status: says if game still in play, or ended in a win or loss.
 
@@ -32,7 +36,6 @@ class Guess:
         self.guess = ""
         self.num_wrong_guesses = 0
         self.MAX_NUM_WRONG_GUESSES = 4
-        self.game_status = ""
         
 
     def set_word(self):
@@ -80,11 +83,12 @@ class Guess:
 
 
     def display_puzzle(self):
-        pass
+        print(self.puzzle)
 
 
     def get_num_wrong(self):
-        pass
+        return self.num_wrong_guesses
+        
 
     def get_game_status(self):
         """This method determines if the game is still being played, has been won, or has been lost.
@@ -92,13 +96,16 @@ class Guess:
         Args:
             Self (Guess): an instance of Guess."""
 
-        if self.num_wrong_guesses >= 4:
-            self.game_status = "Game over, you lost!"
-        if len(self.guess_index) == len(self.word):
-            self.game_status = "Correct!, You won"
-        else:
-            self.game_status = "Still playing"
-        return self.game_status
+        if self.num_wrong_guesses >= self.MAX_NUM_WRONG_GUESSES:
+            # self.game_status = "Game over, you lost!"
+            return GameStatus.LOSE
+
+        if self.puzzle.find("_") == -1:
+            # self.game_status = "Correct!, You won"
+            return GameStatus.WIN
+
+        # self.game_status = "Still playing"
+        return GameStatus.PLAY
 
 #code for testing:
 
