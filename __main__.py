@@ -1,12 +1,5 @@
-# from gameClasses.director import Director
-from gameClasses.picture import Picture
+from gameClasses.director import Director
 
-# director = Director()
-# director.start_game()
+director = Director()
 
-pic = Picture()
-# pic.draw_jumper(0)
-pic.draw_jumper(1,1)
-# pic.draw_jumper(2)
-# pic.draw_jumper(3)
-# pic.draw_jumper(4)
+director.start_game()

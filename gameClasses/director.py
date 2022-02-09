@@ -1,5 +1,5 @@
-from guess import Guess, GameStatus
-from picture import Picture
+from gameClasses.guess import Guess, GameStatus
+from gameClasses.picture import Picture
 
 """attrubites:
     picture
@@ -11,19 +11,19 @@ methods:
     _display_terminal_output
     __int__"""
 
-class director:
+class Director:
     
     def __init__(self) -> None:
         self.guess = Guess()
         self.picture = Picture()
-        self._game_status = GameStatus.PLAY()
+        self._game_status = GameStatus.PLAY
     
 
     def start_game(self):
         self.guess.set_word()
         while True:
             self._display_terminal_output()
-            self._take_turn
+            self._take_turn()
             if self._game_status != GameStatus.PLAY:
                 break
         self._display_terminal_output()
@@ -38,11 +38,7 @@ class director:
         self._game_status = self.guess.get_game_status()
 
     def _display_terminal_output(self):
+        print("")
         self.guess.display_puzzle()
         print("")
         self.picture.draw_jumper(self.guess.get_num_wrong(), self._game_status)
-
-
-        
-
-

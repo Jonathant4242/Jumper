@@ -1,4 +1,4 @@
-from random_word import Random_word
+from gameClasses.random_word import Random_word
 from enum import Enum, auto
 
 class GameStatus(Enum):
@@ -48,7 +48,7 @@ class Guess:
         self.word = random_word.generate_word()
         self.puzzle = ""
         for i in range(len(self.word)):
-            self.puzzle += "_ "
+            self.puzzle = self.puzzle + "_ "
 
     def _update_puzzle(self):
         found = False
@@ -57,7 +57,11 @@ class Guess:
             pos = self.word.find(self.guess, pos+1)
             if pos == -1:
                 break
-            self.puzzle[pos] = self.guess
+            new_puzzle = ""
+            new_puzzle = self.puzzle[:(pos*2)]
+            new_puzzle = new_puzzle + self.guess
+            new_puzzle = new_puzzle + self.puzzle[(pos*2)+1:]
+            self.puzzle = new_puzzle
             found = True
         if not found:
             self.num_wrong_guesses += 1

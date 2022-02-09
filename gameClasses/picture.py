@@ -1,4 +1,4 @@
-from guess import GameStatus
+from gameClasses.guess import GameStatus
 
 class Picture:   
     def __init__(self):
