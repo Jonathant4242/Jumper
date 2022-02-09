@@ -6,7 +6,7 @@ class Picture:
         """Constructs a new Picture.
 
         Attribute:
-            self (chute): Picture of a parachute.
+            self (_chute): Picture of a parachute.
             self (head): O - still in the game
             self (dead_head): X - losing game.
             self (body): The jumper's body and ground
@@ -18,17 +18,18 @@ class Picture:
         
         """
 
-        self.chute =[" _____",
+        self._chute =[" _____",
                      "/_____\ ",
                      "\     /",
                      " \   /"]
         
-        self.head = "   O"
+        self._head = "   O"
         
-        self.losing_head = "   X"
+        self._losing_head = "   X"
         
-        self.body = ["  /|\ ",
+        self._body = ["  /|\ ",
                      "  / \ ",
+                     "",
                      "^^^^^^^^"] 
         
                     # [["   X"],
@@ -38,16 +39,16 @@ class Picture:
         #print(image)
     
     def draw_jumper(self, num_wrong, game_status):
-        for line in range(num_wrong, len(self.chute)):
-            print(self.chute[line])
+        for line in range(num_wrong, len(self._chute)):
+            print(self._chute[line])
 
         if game_status == GameStatus.LOSE:
-            print(self.losing_head)
+            print(self._losing_head)
         else:
-            print(self.head)
+            print(self._head)
         
-        for line in range(len(self.body)):
-            print(self.body[line])
+        for line in range(len(self._body)):
+            print(self._body[line])
         
 
 
