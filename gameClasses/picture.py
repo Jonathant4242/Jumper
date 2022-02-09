@@ -1,3 +1,5 @@
+from guess import GameStatus
+
 class Picture:   
     def __init__(self):
     # 2) Create the class constructor. Use the following method comment.
@@ -15,14 +17,19 @@ class Picture:
             draw_jumper(number of wrong answers)
         
         """
-        self.chute =[[" _____"],
-                     ["/_____\ "],
-                     ["\     /"],
-                     [" \   /"],
-                     ["   O"],
-                     ["  /|\ "],
-                     ["  / \ "],
-                     ["^^^^^^^^"]] 
+
+        self.chute =[" _____",
+                     "/_____\ ",
+                     "\     /",
+                     " \   /"]
+        
+        self.head = "   O"
+        
+        self.losing_head = "   X"
+        
+        self.body = ["  /|\ ",
+                     "  / \ ",
+                     "^^^^^^^^"] 
         
                     # [["   X"],
                     #  ["  /|\ "],
@@ -30,63 +37,30 @@ class Picture:
     #def display_image(self,image): ==> To insert and print in the result (terminal services)
         #print(image)
     
-    def draw_jumper(self, num_wrong):
-        for line in range(num_wrong, len(self.image)):
-            print(self.image[line][0])
+    def draw_jumper(self, num_wrong, game_status):
+        for line in range(num_wrong, len(self.chute)):
+            print(self.chute[line])
 
-    def draw_zero_wrong(self):
-        print('  _____  ')
-        print(' /_____\\')
-        print(' \\     /')
-        print('  \\   /')
-        print('    O')
-        print('   /|\\')
-        print('   / \\')
-        print('')
-        print('^^^^^^^^^')
+        if game_status == GameStatus.LOSE:
+            print(self.losing_head)
+        else:
+            print(self.head)
+        
+        for line in range(len(self.body)):
+            print(self.body[line])
+        
 
-    def draw_one_wrong(self):
-        print(' /_____\\')
-        print(' \\     /')
-        print('  \\   /')
-        print('    O')
-        print('   /|\\')
-        print('   / \\')
-        print('')
-        print('^^^^^^^^^')
-    def draw_two_wrong(self):
-        print(' \\     /')
-        print('  \\   /')
-        print('    O')
-        print('   /|\\')
-        print('   / \\')
-        print('')
-        print('^^^^^^^^^')
-    def draw_three_wrong(self):
-        print('  \\   /')
-        print('    O')
-        print('   /|\\')
-        print('   / \\')
-        print('')
-        print('^^^^^^^^^')
-    def draw_four_wrong(self):
-        print('    X')
-        print('   /|\\')
-        print('   / \\')
-        print('')
-        print('^^^^^^^^^')
+
+
+
+
 
 
    
 #for testing:
-jumper = Picture()
-jumper.draw_jumper(0)
-jumper.draw_jumper(1)
-jumper.draw_jumper(2)
-jumper.draw_jumper(3)
-jumper.draw_jumper(4)
-# jumper.draw_zero_wrong()
-# jumper.draw_one_wrong()
-# jumper.draw_two_wrong()
-# jumper.draw_three_wrong()
-# jumper.draw_four_wrong()
+# jumper = Picture()
+# jumper.draw_jumper(0, GameStatus.WIN)
+# jumper.draw_jumper(1, GameStatus.WIN)
+# jumper.draw_jumper(2, GameStatus.PLAY)
+# jumper.draw_jumper(3, GameStatus.PLAY)
+# jumper.draw_jumper(4, GameStatus.LOSE)
