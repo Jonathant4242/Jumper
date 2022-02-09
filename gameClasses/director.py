@@ -31,6 +31,8 @@ class Director:
             print('You successfully landed your jump!')
         else:
             print('You had a rough landing. Ambulance is on the way!')
+            print(f'The word was: {self.guess.word}')
+            print('')
 
 
     def _take_turn(self):

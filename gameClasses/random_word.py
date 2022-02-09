@@ -14,10 +14,10 @@ class Random_word:
 		Returns:
 			word: a random word for use in the Jumper game"""
 		
-		with open("gameClasses\prophets.txt", "r") as file:
-			allText = file.read()
-			words = list(map(str, allText.split()))
-			self.word = random.choice(words)
+		with open("gameClasses\prophets.txt", "r") as _file:
+			_allText = _file.read()
+			_words = list(map(str, _allText.split()))
+			self.word = random.choice(_words)
 			return self.word
 			
 			
