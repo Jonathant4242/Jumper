@@ -18,7 +18,7 @@ root                    (project root folder)
   +-- gameClasses       (specific classes)
     +-- picture.py      (code for picture class)
     +-- director.py     (code for director class)
-    +-- result.py       (code for result class)
+    +-- guess.py       (code for guess class)
   +-- __main__.py       (program entry point)
 +-- README.md           (general info)
 ```
