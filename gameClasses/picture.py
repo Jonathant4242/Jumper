@@ -2,7 +2,6 @@ from gameClasses.guess import GameStatus
 
 class Picture:   
     def __init__(self):
-    # 2) Create the class constructor. Use the following method comment.
         """Constructs a new Picture.
 
         Attribute:
